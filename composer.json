@@ -1,0 +1,14 @@
+{
+    "name": "miskatonic_cymru/privacyidea_otp",
+    "type": "roundcube-plugin",
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://plugins.roundcube.net"
+        }
+    ],
+    "require": {
+        "roundcube/plugin-installer": ">=0.1.3"
+    }
+}
