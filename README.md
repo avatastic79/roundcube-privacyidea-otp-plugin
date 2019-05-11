@@ -29,3 +29,7 @@ Activate the plugin in the roundcube/config/config.inc.php
 
     $config['plugins'] = array('privacyidea_otp');
 
+
+Sample
+------
+![](images/screenshot.png)
