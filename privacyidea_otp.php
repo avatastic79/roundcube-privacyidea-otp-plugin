@@ -47,12 +47,21 @@ class privacyidea_otp extends rcube_plugin
 
  function template_object_loginform($loginform = array())
  {
-  $input_pin = '<input type="password" name="_pin" id="rcmloginpin" required="required" autocomplete="off"/>';
+ if ($this->rcmail->config->get('privacyidea_use_pin', true))
+  {
+    $input_pin = '<input type="password" name="_pin" id="rcmloginpin" required="required" autocomplete="off"/>';
+  }
   $input_otp = '<input type="text" name="_otp" id="rcmloginotp" required="required" autocomplete="off"/>';
-  $label_pin = '<label for="rcmloginpin">'. html::quote($this->gettext('privacyidea_otp_pin')).'</label>';
+  if ($this->rcmail->config->get('privacyidea_use_pin', true))
+  {
+    $label_pin = '<label for="rcmloginpin">'. html::quote($this->gettext('privacyidea_otp_pin')).'</label>';
+  }
   $label_otp = '<label for="rcmloginotp">'. html::quote($this->gettext('privacyidea_otp_otp')).'</label>';
-  $form_additions = '<tr><td class="title">'.$label_pin.'</td>';
-  $form_additions .= '<td class="input">'.$input_pin.'</td></tr>';
+  if ($this->rcmail->config->get('privacyidea_use_pin', true))
+  {
+    $form_additions = '<tr><td class="title">'.$label_pin.'</td>';
+    $form_additions .= '<td class="input">'.$input_pin.'</td></tr>';
+  }
   $form_additions .= '<tr><td class="title">'.$label_otp.'</td>';
   $form_additions .= '<td class="input">'.$input_otp.'</td></tr>';
   $form_additions .= '</tbody>';
@@ -63,9 +72,18 @@ class privacyidea_otp extends rcube_plugin
 
  function authenticate($args = array())
  {
-  $params = array("user" => $args['user'], 
+  if ($this->rcmail->config->get('privacyidea_use_pin', true))
+  {
+    $params = array("user" => $args['user'],
     "pass" => filter_input(INPUT_POST,'_pin').filter_input(INPUT_POST,'_otp')
     );
+  }
+  else
+  {
+    $params = array("user" => $args['user'],
+    "pass" => filter_input(INPUT_POST,'_otp')
+    );
+  }
 
   if ($this->rcmail->config->get('privacyidea_api_realm')) {
    $params["realm"] = $this->rcmail->config->get('privacyidea_api_realm');
