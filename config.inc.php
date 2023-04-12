@@ -13,4 +13,7 @@ $rcmail_config['privacyidea_api_url'] = '**REQUIRED**';
 // will be used
 // $rcmail_config['privacyidea_api_realm'] = '';
 
+// PrivacyIdea use PIN (true) or not (false) 
+$rcmail_config['privacyidea_use_pin'] = true;
+
 ?>

@@ -17,6 +17,10 @@ Optionally, set the realm the tokens have been created in.
 
     $rcmail_config['privacyidea_api_realm'] = 'roundcube';
 
+Optionally, set to not use the PIN tokens, default to true
+
+    $rcmail_config['privacyidea_use_pin'] = false;
+
 
 Installation
 ------------
